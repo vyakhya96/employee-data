@@ -1,0 +1,122 @@
+<div class="container text-center">
+    <h3>Employee Data</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <button (click)='sortByName()'>Sort by name</button>
+        </div>
+        <div class="col-sm-3">
+            <button (click)='sortByDate()'>Sort by date</button>
+        </div>
+        <div class="col-sm-6"><button (click)='filterExp()'>More than 2 years Exp</button> </div>
+
+
+
+    </div>
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search name">
+  </div>
+<div *ngIf='flag1'>
+<table class="table table-striped">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name 
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Joining Date
+        </th>
+    </tr>
+    <tr *ngFor='let obj of candidate_data| filter:searchText'>
+
+        <td>{{obj.id}}</td>
+        <td>{{obj.name}}</td>
+        <td>{{obj.department}}</td>
+        <td>{{obj.joining_date}}</td>
+    </tr>
+
+    
+
+</table>
+</div>
+
+<div *ngIf='!flag1'>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name 
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Joining Date
+            </th>
+        </tr>
+        <tr *ngFor='let obj of expArr| filter:searchText'>
+    
+            <td>{{obj.id}}</td>
+            <td>{{obj.name}}</td>
+            <td>{{obj.department}}</td>
+            <td>{{obj.joining_date}}</td>
+        </tr>
+    
+        
+    
+    </table>
+    </div>
+
+    <div class="row">
+    
+        <div class="col-sm-4">
+            <button (click)='distinctDept()'>Distinct Departments</button>
+            <div *ngIf='flag2'>
+                <pre>{{countDept | json}}</pre>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <button (click)='deleteDept()'>Delete Development Department</button>
+           
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Name 
+                        </th>
+                        <th>
+                            Department
+                        </th>
+                        <th>
+                            Joining Date
+                        </th>
+                    </tr>
+                    <tr *ngFor='let obj of deleteDeptartment'>
+                
+                        <td>{{obj.id}}</td>
+                        <td>{{obj.name}}</td>
+                        <td>{{obj.department}}</td>
+                        <td>{{obj.joining_date}}</td>
+                    </tr>
+                
+                    
+                
+                </table>
+        
+        </div>
+     
+
+
+
+    </div>
+</div>
